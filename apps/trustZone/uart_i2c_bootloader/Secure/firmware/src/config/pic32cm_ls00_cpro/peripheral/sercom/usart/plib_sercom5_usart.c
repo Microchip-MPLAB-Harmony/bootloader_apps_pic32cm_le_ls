@@ -256,16 +256,14 @@ bool SERCOM5_USART_Write( void *buffer, const size_t size )
 {
     bool writeStatus      = false;
     uint8_t *pu8Data      = (uint8_t*)buffer;
-    uint32_t u32Length    = size;
+    uint16_t *pu16Data    = (uint16_t*)buffer;
+    uint32_t u32Index     = 0U;
 
-    if(pu8Data != NULL)
+    if(buffer != NULL)
     {
-
         /* Blocks while buffer is being transferred */
-        while(u32Length > 0U)
+        while(u32Index < size)
         {
-            u32Length -= 1U;
-
             /* Check if USART is ready for new data */
             while((SERCOM5_REGS->USART_INT.SERCOM_INTFLAG & (uint8_t)SERCOM_USART_INT_INTFLAG_DRE_Msk) == 0U)
             {
@@ -276,16 +274,17 @@ bool SERCOM5_USART_Write( void *buffer, const size_t size )
             if (((SERCOM5_REGS->USART_INT.SERCOM_CTRLB & SERCOM_USART_INT_CTRLB_CHSIZE_Msk) >> SERCOM_USART_INT_CTRLB_CHSIZE_Pos) != 0x01U)
             {
                 /* 8-bit mode */
-                SERCOM5_REGS->USART_INT.SERCOM_DATA = *pu8Data++;
+                SERCOM5_REGS->USART_INT.SERCOM_DATA = pu8Data[u32Index];
             }
             else
             {
                 /* 9-bit mode */
-                SERCOM5_REGS->USART_INT.SERCOM_DATA = *(uint16_t*)pu8Data;
-                pu8Data += 2;
+                SERCOM5_REGS->USART_INT.SERCOM_DATA = pu16Data[u32Index];
             }
-        }
 
+            /* Increment index */
+            u32Index++;
+        }
         writeStatus = true;
     }
 
@@ -352,18 +351,19 @@ void SERCOM5_USART_ReceiverDisable( void )
 
 bool SERCOM5_USART_Read( void *buffer, const size_t size )
 {
-    bool readStatus        = false;
-    uint8_t* pu8Data       = (uint8_t*)buffer;
-    uint32_t processedSize = 0U;
+    bool readStatus         = false;
+    uint8_t* pu8Data        = (uint8_t*)buffer;
+    uint16_t *pu16Data      = (uint16_t*)buffer;
+    uint32_t u32Index       = 0U;
     USART_ERROR errorStatus = USART_ERROR_NONE;
 
-    if(pu8Data != NULL)
+    if(buffer != NULL)
     {
 
         /* Clear error flags and flush out error data that may have been received when no active request was pending */
         SERCOM5_USART_ErrorClear();
 
-        while(processedSize < size)
+        while(u32Index < size)
         {
             /* Check if USART has new data */
             while((SERCOM5_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_RXC_Msk) == 0U)
@@ -381,19 +381,19 @@ bool SERCOM5_USART_Read( void *buffer, const size_t size )
             if (((SERCOM5_REGS->USART_INT.SERCOM_CTRLB & SERCOM_USART_INT_CTRLB_CHSIZE_Msk) >> SERCOM_USART_INT_CTRLB_CHSIZE_Pos) != 0x01U)
             {
                 /* 8-bit mode */
-                *pu8Data++ = (uint8_t) (SERCOM5_REGS->USART_INT.SERCOM_DATA);
+                pu8Data[u32Index] = (uint8_t) (SERCOM5_REGS->USART_INT.SERCOM_DATA);
             }
             else
             {
                 /* 9-bit mode */
-                *(uint16_t*)pu8Data = (uint16_t) (SERCOM5_REGS->USART_INT.SERCOM_DATA);
-                pu8Data += 2;
+                pu16Data[u32Index] = SERCOM5_REGS->USART_INT.SERCOM_DATA;
             }
 
-            processedSize += 1U;
+            /* Increment index */
+            u32Index++;
         }
 
-        if(size == processedSize)
+        if(size == u32Index)
         {
             readStatus = true;
         }

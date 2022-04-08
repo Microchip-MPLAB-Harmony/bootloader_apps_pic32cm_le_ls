@@ -239,7 +239,6 @@
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/pic32cm_ls60_cpro/harmony-manifest-success.yml</itemPath>
-      <itemPath>../src/config/pic32cm_ls60_cpro/harmony-manifest-failure.yml</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

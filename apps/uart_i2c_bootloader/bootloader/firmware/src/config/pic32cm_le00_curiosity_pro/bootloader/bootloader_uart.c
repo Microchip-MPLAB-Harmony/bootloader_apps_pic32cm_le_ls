@@ -313,6 +313,15 @@ static void flash_task(void)
             input_task();
             kickdog();
         }
+
+        /* Unlock the BOOTPROT Region by setting SULCK.BS bit.*/
+        if (flash_addr < APP_START_ADDRESS)
+        {
+            /* To be replaced by NVMCTRL_SecureRegionUnlock(NVMCTRL_SECURE_MEMORY_REGION_BOOTLOADER)
+             * Once supported by NVMCTRL PLIB for LE00
+             */
+            NVMCTRL_REGS->NVMCTRL_SULCK |= NVMCTRL_SULCK_SLKEY_KEY | NVMCTRL_SULCK_BS_Msk;
+        }
     }
 
     // Check if the address falls in Device Configuration Space

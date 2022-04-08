@@ -53,6 +53,7 @@
 // Section: Configuration Bits
 // ****************************************************************************
 // ****************************************************************************
+#pragma config NVMCTRL_SULCK = 0x7
 #pragma config NVMCTRL_NSULCK = 0x6
 #pragma config BOD33USERLEVEL = 0x6
 #pragma config BOD33_DIS = CLEAR
@@ -65,7 +66,6 @@
 #pragma config WDT_EWOFFSET = 0xb
 #pragma config WDT_WEN = CLEAR
 #pragma config BOD33_HYST = CLEAR
-#pragma config NVMCTRL_URWEN = SET
 
 
 
