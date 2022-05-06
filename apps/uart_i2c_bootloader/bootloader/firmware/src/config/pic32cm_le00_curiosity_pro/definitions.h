@@ -58,8 +58,8 @@
 #include "peripheral/systick/plib_systick.h"
 #include "peripheral/wdt/plib_wdt.h"
 #include "peripheral/pac/plib_pac.h"
-#include "peripheral/sercom/usart/plib_sercom5_usart.h"
 #include "peripheral/pm/plib_pm.h"
+#include "peripheral/sercom/usart/plib_sercom5_usart.h"
 #include "bootloader/bootloader_i2c.h"
 #include "peripheral/dsu/plib_dsu.h"
 

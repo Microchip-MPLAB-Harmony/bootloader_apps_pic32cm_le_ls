@@ -53,7 +53,7 @@
 // Section: Configuration Bits
 // ****************************************************************************
 // ****************************************************************************
-#pragma config NVMCTRL_SULCK = 0x7
+#pragma config NVMCTRL_SULCK = 0x6
 #pragma config NVMCTRL_NSULCK = 0x6
 #pragma config BOD33USERLEVEL = 0x6
 #pragma config BOD33_DIS = CLEAR
@@ -66,6 +66,11 @@
 #pragma config WDT_EWOFFSET = 0xb
 #pragma config WDT_WEN = CLEAR
 #pragma config BOD33_HYST = CLEAR
+#pragma config BOOTROM_BOOTPROT = 0x10
+#pragma config BOOTROM_CRCKEY_0 = 0xffffffff
+#pragma config BOOTROM_CRCKEY_1 = 0xffffffff
+#pragma config BOOTROM_CRCKEY_2 = 0xffffffff
+#pragma config BOOTROM_CRCKEY_3 = 0xffffffff
 
 
 
@@ -128,6 +133,7 @@ void SYS_Initialize ( void* data )
         run_Application();
     }
 
+    PM_Initialize();
 
     CLOCK_Initialize();
 
