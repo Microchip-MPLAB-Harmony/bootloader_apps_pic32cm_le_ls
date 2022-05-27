@@ -69,6 +69,7 @@
 #define APP_BL_SDCARD_MOUNT_NAME                    SYS_FS_MEDIA_IDX0_MOUNT_NAME_VOLUME_IDX0
 #define APP_BL_SDCARD_DEV_NAME                      SYS_FS_MEDIA_IDX0_DEVICE_NAME_VOLUME_IDX0
 
+#define APP_BL_STATUS_READY                         (0x0)
 #define APP_BL_STATUS_BIT_BUSY                      (0x01 << 0)
 #define APP_BL_STATUS_BIT_INVALID_COMMAND           (0x01 << 1)
 #define APP_BL_STATUS_BIT_INVALID_MEM_ADDR          (0x01 << 2)
@@ -769,13 +770,19 @@ void APP_SAME54_Tasks ( void )
         case APP_READ_STATUS_COMMAND_TRANSFER_COMPLETE:
             if (appData.trasnferStatus == APP_TRANSFER_STATUS_SUCCESS)
             {
-                if (appData.status != 0)
+                if (appData.status == APP_BL_STATUS_BIT_BUSY)
                 {
-                    appData.state = APP_ERROR;
+                    /* Slave is busy. Keep checking the status */
+                    appData.state = APP_READ_STATUS;
+                }
+                else if (appData.status == APP_BL_STATUS_READY)
+                {
+                    /* Slave is ready for next command */
+                    appData.state = appData.nextState;
                 }
                 else
                 {
-                    appData.state = appData.nextState;
+                    appData.state = APP_ERROR;
                 }
             }
             else if (appData.trasnferStatus == APP_TRANSFER_STATUS_ERROR)
