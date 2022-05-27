@@ -20,13 +20,13 @@ files:
   security: SECURE
   type: SOURCE
   userChecksum: 193DE17894BD49DC30905A7DE167607B
-- generatedChecksum: 85EB6A44D7CB11DEFCB9DBE706F0887F
+- generatedChecksum: E3192BFEE7930275BE90ECC6C4A4BBB8
   logicalPath: config/pic32cm_ls00_cpro
   name: initialization.c
   physicalPath: ''
   security: SECURE
   type: SOURCE
-  userChecksum: 85EB6A44D7CB11DEFCB9DBE706F0887F
+  userChecksum: E3192BFEE7930275BE90ECC6C4A4BBB8
 - generatedChecksum: null
   logicalPath: ''
   name: main.c
