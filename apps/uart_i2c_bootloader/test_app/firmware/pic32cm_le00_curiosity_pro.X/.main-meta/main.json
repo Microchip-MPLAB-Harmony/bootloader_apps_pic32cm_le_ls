@@ -1,0 +1,82 @@
+{
+	"metaDataVersion": "1.0.0",
+	"category": "com.microchip.ide.project",
+	"content": {
+		"metaDataVersion": "1.1.0",
+		"name": "com.microchip.mcu32.mplabx.project.bootloader_apps_pic32cm_le_ls_uart_i2c_bootloader",
+		"version": "3.1.0",
+		"displayName": "Test Application for PIC32CM LE/LS Family",
+		"projectName": "uart_i2c_bootloader_test_app_pic32cm_le00_curiosity_pro",
+		"shortDescription": "This is a test application which can be bootloaded using the UART-I2C Factory Programed Bootloader for PIC32CM LE/LS family",
+		"ide": {
+			"name": "MPLABX",
+			"semverRange": ">=5.50.0"
+		},
+		"compiler": [
+			{
+				"name": "XC32",
+				"semverRange": ">=3.00.0"
+			}
+		],
+		"dfp": {
+			"name": "PIC32CM-LE_DFP",
+			"semverRange": "^1.1.162"
+		},
+		"configurator": {
+			"name": "MHC",
+			"semverRange": ">=3.8.0"
+		},
+		"device": {
+			"metaDataVersion": "1.0.0",
+			"category": "com.microchip.portal.contentRef",
+			"content": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.device",
+				"name": "PIC32CM5164LE00100",
+				"versionRange": "*"
+			}
+		},
+		"author": "Microchip",
+		"subcategories": [
+			[
+				"Development Kit",
+				"PIC32CM LE00 Cuirosity Pro"
+			],
+			[
+				"Harmony",
+				"Bootloader",
+				"UART"
+                "I2C"
+			],
+			[
+				"Bootloader",
+				"UART"
+                "I2C"
+			]
+		],
+		"peripherals": [
+			"Bootloader"
+		],
+		"keywords": [
+			"MHC",
+			"Harmony",
+			"Bootloader",
+			"UART",
+            "I2C",
+            "Test App"
+			"PIC32CM5164LE00100",
+			"PIC32CM LE/LS Family"
+		],
+		"additionalData": {
+			"longDescription": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.portal.fileRef",
+				"content": {
+					"metaDataVersion": "1.0.0",
+					"fileName": "./../../../readme.md",
+					"mimeType": "text/markdown"
+				}
+			}
+		}
+	}
+}

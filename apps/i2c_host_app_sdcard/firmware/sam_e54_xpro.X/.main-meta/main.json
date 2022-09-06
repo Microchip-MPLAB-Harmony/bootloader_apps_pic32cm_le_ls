@@ -1,0 +1,81 @@
+{
+	"metaDataVersion": "1.0.0",
+	"category": "com.microchip.ide.project",
+	"content": {
+		"metaDataVersion": "1.1.0",
+		"name": "com.microchip.mcu32.mplabx.project.bootloader_pic32cm_le_ls_i2c_host_app_sdcard",
+		"version": "3.1.0",
+		"displayName": "I2C host Example for SAM D5x/E5x Family",
+		"projectName": "i2c_bootloader_host_app_sdcard_sam_e54_xpro",
+		"shortDescription": "This example application shows how to use the I2C SDCARD Host application to send the application binary to Target development kit",
+		"ide": {
+			"name": "MPLABX",
+			"semverRange": ">=5.50.0"
+		},
+		"compiler": [
+			{
+				"name": "XC32",
+				"semverRange": ">=3.00.0"
+			}
+		],
+		"dfp": {
+			"name": "SAM_E54_DFP",
+			"semverRange": "^3.6.95"
+		},
+		"configurator": {
+			"name": "MHC",
+			"semverRange": ">=3.8.0"
+		},
+		"device": {
+			"metaDataVersion": "1.0.0",
+			"category": "com.microchip.portal.contentRef",
+			"content": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.device",
+				"name": "ATSAME54P20A",
+				"versionRange": "*"
+			}
+		},
+		"author": "Microchip",
+		"subcategories": [
+			[
+				"Development Kit",
+				"SAM E54 Xplained Pro"
+			],
+			[
+				"Harmony",
+				"Bootloader",
+                "I2C"
+                "SDCARD"
+			],
+			[
+				"Bootloader",
+                "I2C"
+                "SDCARD"
+			]
+		],
+		"peripherals": [
+			"Bootloader"
+		],
+		"keywords": [
+			"MHC",
+			"Harmony",
+			"Bootloader",
+			"I2C host",
+            "I2C",
+			"ATSAME54P20A",
+			"SAM E54 Xplained Pro"
+		],
+		"additionalData": {
+			"longDescription": {
+				"metaDataVersion": "1.0.0",
+				"category": "com.microchip.portal.fileRef",
+				"content": {
+					"metaDataVersion": "1.0.0",
+					"fileName": "./../../../readme.md",
+					"mimeType": "text/markdown"
+				}
+			}
+		}
+	}
+}
