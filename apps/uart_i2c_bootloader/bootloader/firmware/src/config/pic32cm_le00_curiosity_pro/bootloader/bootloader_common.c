@@ -153,15 +153,15 @@ uint32_t bootloader_CRCGenerate(uint32_t start_addr, uint32_t size)
 }
 
 /* Trigger a reset */
-void bootloader_TriggerReset(void)
+void __NO_RETURN bootloader_TriggerReset(void)
 {
     NVIC_SystemReset();
 }
 
-void run_Application(void)
+void run_Application(uint32_t address)
 {
-    uint32_t msp            = *(uint32_t *)(APP_START_ADDRESS);
-    uint32_t reset_vector   = *(uint32_t *)(APP_START_ADDRESS + 4);
+    uint32_t msp            = *(uint32_t *)(address);
+    uint32_t reset_vector   = *(uint32_t *)(address + 4);
 
     if (msp == 0xffffffff)
     {
@@ -175,4 +175,5 @@ void run_Application(void)
 
     asm("bx %0"::"r" (reset_vector));
 }
+
 

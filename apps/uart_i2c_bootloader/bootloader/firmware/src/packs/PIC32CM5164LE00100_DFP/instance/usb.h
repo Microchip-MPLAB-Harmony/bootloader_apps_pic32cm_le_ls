@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2022-03-31T12:21:24Z */
+/* file generated from device description version 2022-05-25T15:37:41Z */
 #ifndef _PIC32CMLE00_USB_INSTANCE_
 #define _PIC32CMLE00_USB_INSTANCE_
 

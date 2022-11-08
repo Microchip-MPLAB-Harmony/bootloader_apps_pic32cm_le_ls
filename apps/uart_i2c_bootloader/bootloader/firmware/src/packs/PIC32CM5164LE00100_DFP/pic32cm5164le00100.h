@@ -20,7 +20,7 @@
  *
  */
 
-/* File generated from device description version 2022-03-31T12:21:24Z */
+/* File generated from device description version 2022-05-25T15:37:41Z */
 #ifndef _PIC32CM5164LE00100_H_
 #define _PIC32CM5164LE00100_H_
 
@@ -84,9 +84,9 @@ typedef enum IRQn
 /******  PIC32CM5164LE00100 specific Interrupt Numbers ***********************************/
   MCLK_IRQn                 =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (MCLK) */
   OSCCTRL_IRQn              =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (OSCCTRL) */
+  PM_IRQn                   =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (PM) */
   SUPC_IRQn                 =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (SUPC) */
   OSC32KCTRL_IRQn           =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (OSC32KCTRL) */
-  PM_IRQn                   =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (PM) */
   WDT_IRQn                  =   1, /* 1   Watchdog Timer (WDT)                */
   RTC_IRQn                  =   2, /* 2   Real-Time Counter (RTC)             */
   EIC_EXTINT_0_IRQn         =   3, /* 3   External Interrupt Controller (EIC) */

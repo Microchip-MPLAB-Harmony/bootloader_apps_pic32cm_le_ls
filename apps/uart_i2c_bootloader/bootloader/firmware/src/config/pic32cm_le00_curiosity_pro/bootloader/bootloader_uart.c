@@ -2,7 +2,7 @@
   UART Bootloader Source File
 
   File Name:
-    bootloader.c
+    bootloader_uart.c
 
   Summary:
     This file contains source code necessary to execute UART bootloader.
@@ -118,6 +118,11 @@ static bool     packet_received     = false;
 static bool     flash_data_ready    = false;
 
 static bool     uartBLActive        = false;
+
+typedef bool (*FLASH_ERASE_FPTR)(uint32_t);
+
+typedef bool (*FLASH_WRITE_FPTR)(uint32_t*, uint32_t);
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -263,7 +268,7 @@ static void command_task(void)
         uint32_t crc        = input_buffer[CRC_OFFSET];
         uint32_t crc_gen    = 0;
 
-        crc_gen = bootloader_CRCGenerate(unlock_begin, unlock_end - unlock_begin);
+        crc_gen = bootloader_CRCGenerate(unlock_begin, (unlock_end - unlock_begin));
 
         if (crc == crc_gen)
         {
@@ -290,6 +295,7 @@ static void command_task(void)
     packet_received = false;
 }
 
+
 /* Function to program received application firmware data into internal flash */
 static void flash_task(void)
 {
@@ -300,68 +306,69 @@ static void flash_task(void)
     // data_size = Actual data bytes to write + Address 4 Bytes
     uint32_t bytes_to_write = (data_size - 4);
 
-    bool (*flash_erase_fptr)(uint32_t) = NVMCTRL_RowErase;
-    bool (*flash_write_fptr)(uint32_t*, uint32_t) = NVMCTRL_PageWrite;
-
+    FLASH_ERASE_FPTR flash_erase_fptr = (FLASH_ERASE_FPTR)NVMCTRL_RowErase;
+    FLASH_WRITE_FPTR flash_write_fptr = (FLASH_WRITE_FPTR)NVMCTRL_PageWrite;
 
     if ((flash_addr >= unlock_begin && flash_addr < unlock_end))
     {
-        NVMCTRL_RegionUnlock(NVMCTRL_MEMORY_REGION_APPLICATION);
+        if (flash_addr < APP_START_ADDRESS)
+        {
+            NVMCTRL_SecureRegionUnlock(NVMCTRL_SECURE_MEMORY_REGION_BOOTLOADER);
+        }
+        else
+        {
+            NVMCTRL_RegionUnlock(NVMCTRL_MEMORY_REGION_APPLICATION);
+        }
 
         while(NVMCTRL_IsBusy() == true)
         {
             input_task();
             kickdog();
         }
-
-        /* Unlock the BOOTPROT Region by setting SULCK.BS bit.*/
-        if (flash_addr < APP_START_ADDRESS)
-        {
-            /* To be replaced by NVMCTRL_SecureRegionUnlock(NVMCTRL_SECURE_MEMORY_REGION_BOOTLOADER)
-             * Once supported by NVMCTRL PLIB for LE00
-             */
-            NVMCTRL_REGS->NVMCTRL_SULCK |= NVMCTRL_SULCK_SLKEY_KEY | NVMCTRL_SULCK_BS_Msk;
-        }
     }
-
     // Check if the address falls in Device Configuration Space
     if (!(flash_addr >= unlock_begin && flash_addr < unlock_end))
     {
         if ((flash_addr >= NVMCTRL_USERROW_START_ADDRESS) && (flash_addr < (NVMCTRL_USERROW_START_ADDRESS + NVMCTRL_USERROW_SIZE)))
         {
-            flash_erase_fptr = NVMCTRL_USER_ROW_RowErase;
-            flash_write_fptr = NVMCTRL_USER_ROW_PageWrite;
+            flash_erase_fptr = (FLASH_ERASE_FPTR)NVMCTRL_USER_ROW_RowErase;
+            flash_write_fptr = (FLASH_WRITE_FPTR)NVMCTRL_USER_ROW_PageWrite;
         }
         else if ((flash_addr >= NVMCTRL_BOCORROW_START_ADDRESS) && (flash_addr < (NVMCTRL_BOCORROW_START_ADDRESS + NVMCTRL_BOCORROW_SIZE)))
         {
-            flash_erase_fptr = NVMCTRL_BOCOR_ROW_RowErase;
-            flash_write_fptr = NVMCTRL_BOCOR_ROW_PageWrite;
+            flash_erase_fptr = (FLASH_ERASE_FPTR)NVMCTRL_BOCOR_ROW_RowErase;
+            flash_write_fptr = (FLASH_WRITE_FPTR)NVMCTRL_BOCOR_ROW_PageWrite;
         }
     }
-
     /* Erase the Current sector */
     flash_erase_fptr(addr);
 
-    /* Receive Next Bytes while waiting for erase to complete */
+    /* Receive Next Bytes while waiting for memory to be ready */
     while(NVMCTRL_IsBusy() == true)
     {
         input_task();
+    
         kickdog();
+    
     }
 
     for (bytes_written = 0; bytes_written < bytes_to_write; bytes_written += PAGE_SIZE)
     {
         flash_write_fptr(&flash_data[write_idx], addr);
 
+        /* Receive Next Bytes while waiting for memory to be ready */
         while(NVMCTRL_IsBusy() == true)
         {
             input_task();
+        
             kickdog();
+        
         }
 
         addr += PAGE_SIZE;
         write_idx += WORDS(PAGE_SIZE);
     }
+
 
     flash_data_ready = false;
 }
@@ -374,6 +381,7 @@ static void flash_task(void)
 
 void bootloader_UART_Tasks(void)
 {
+
     do
     {
         kickdog();

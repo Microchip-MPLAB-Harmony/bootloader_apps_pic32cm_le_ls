@@ -1,8 +1,8 @@
 /*******************************************************************************
-  Bootloader Header File
+  I2C Bootloader Header File
 
   File Name:
-    bootloader.h
+    bootloader_i2c.h
 
   Summary:
     This file contains Interface definitions of bootloder
