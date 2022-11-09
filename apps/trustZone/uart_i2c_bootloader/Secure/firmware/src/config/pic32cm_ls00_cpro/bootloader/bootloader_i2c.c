@@ -345,6 +345,7 @@ static bool BL_I2C_MasterWriteHandler(uint8_t rdByte)
 
 static void BL_I2C_EventsProcess(void)
 {
+
     static bool isFirstRxByte;
     static bool transferDir;
     SERCOM_I2C_SLAVE_ERROR error;
@@ -421,20 +422,20 @@ static void BL_I2C_FlashTask(void)
         case BL_FLASH_STATE_ERASE:
             if ((blProtocol.cmdProtocol.eraseCommand.memAddr >= blProtocol.appImageStartAddr) && ((blProtocol.cmdProtocol.eraseCommand.memAddr + ERASE_BLOCK_SIZE) <= blProtocol.appImageEndAddr))
             {
-                NVMCTRL_RegionUnlock(NVMCTRL_MEMORY_REGION_APPLICATION);
-
-                while(NVMCTRL_IsBusy() == true)
+                if (blProtocol.cmdProtocol.eraseCommand.memAddr < APP_START_ADDRESS)
                 {
-                    kickdog();
-                }
-
-                if (blProtocol.cmdProtocol.eraseCommand.memAddr >= APP_START_ADDRESS)
-                {
-                    NVMCTRL_SecureRegionUnlock(NVMCTRL_SECURE_MEMORY_REGION_APPLICATION);
+                    NVMCTRL_SecureRegionUnlock(NVMCTRL_SECURE_MEMORY_REGION_BOOTLOADER);
                 }
                 else
                 {
-                    NVMCTRL_SecureRegionUnlock(NVMCTRL_SECURE_MEMORY_REGION_BOOTLOADER);
+                    NVMCTRL_SecureRegionUnlock(NVMCTRL_SECURE_MEMORY_REGION_APPLICATION);
+
+                    while(NVMCTRL_IsBusy() == true)
+                    {
+                    kickdog();
+                    }
+
+                    NVMCTRL_RegionUnlock(NVMCTRL_MEMORY_REGION_APPLICATION);
                 }
 
                 while(NVMCTRL_IsBusy() == true)
@@ -523,6 +524,7 @@ static void BL_I2C_FlashTask(void)
         case BL_FLASH_STATE_RESET:
             /* Wait for the I2C transfer to complete */
             while (!(SERCOM2_I2C_InterruptFlagsGet() & SERCOM_I2C_SLAVE_INTFLAG_PREC));
+
             bootloader_TriggerReset();
             break;
 

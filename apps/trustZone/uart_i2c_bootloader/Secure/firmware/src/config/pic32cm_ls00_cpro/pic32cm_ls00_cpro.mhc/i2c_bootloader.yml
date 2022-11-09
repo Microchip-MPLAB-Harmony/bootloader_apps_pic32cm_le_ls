@@ -67,6 +67,13 @@ children:
       - type: Dynamic
         attributes: {id: i2c_bootloader, value: NVMCTRL}
   - type: String
+    attributes: {id: PERIPH_INSTANCE_NAME}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: i2c_bootloader, value: sercom2}
+  - type: String
     attributes: {id: PERIPH_USED}
     children:
     - type: Values

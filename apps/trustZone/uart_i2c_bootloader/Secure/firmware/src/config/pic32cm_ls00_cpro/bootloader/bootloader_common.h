@@ -69,11 +69,16 @@
 #define NVM_BOCOR_PAGE_SIZE                      (64UL)
 
 #define BOOTLOADER_SIZE                         4096
+
+#define FLASH_END_ADDRESS                       (FLASH_START + FLASH_LENGTH)
+
+
 #define APP_START_ADDRESS                       (0x1000UL)
 
-#define BTL_TRIGGER_RAM_START                  (0x20000000 + 0x1000)
 
-#define BTL_TRIGGER_LEN                        16
+#define BTL_TRIGGER_RAM_START                   (0x20000000 + 0x1000)
+
+#define BTL_TRIGGER_LEN                         16
 
 // *****************************************************************************
 /* Function:
@@ -173,7 +178,7 @@ Example:
 
         if (bootloader_Trigger() == false)
         {
-            run_Application();
+            run_Application(APP_START_ADDRESS);
         }
 
         CLOCK_Initialize();
@@ -184,7 +189,7 @@ bool bootloader_Trigger( void );
 
 // *****************************************************************************
 /* Function:
-    void run_Application( void );
+    void run_Application( uint32_t address );
 
 Summary:
     Runs the programmed application at startup.
@@ -203,7 +208,7 @@ Precondition:
     bootloader_Trigger() must be called to check for bootloader triggers at startup.
 
 Parameters:
-    None.
+    address - Application Start/Jump address.
 
 Returns:
     None
@@ -217,14 +222,14 @@ Example:
 
         if (bootloader_Trigger() == false)
         {
-            run_Application();
+            run_Application(APP_START_ADDRESS);
         }
 
         CLOCK_Initialize();
 
     </code>
 */
-void run_Application( void );
+void run_Application( uint32_t address );
 
 // *****************************************************************************
 /* Function:
@@ -302,6 +307,8 @@ Example:
 */
 void bootloader_TriggerReset(void);
 
+
+/* Function to refresh watchdog timer */
 void kickdog(void);
 
 #endif      //BOOTLOADER_COMMON_H

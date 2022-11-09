@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2022-03-31T12:21:34Z */
+/* file generated from device description version 2022-05-25T15:37:54Z */
 #ifndef _PIC32CMLS00_DMAC_COMPONENT_H_
 #define _PIC32CMLS00_DMAC_COMPONENT_H_
 

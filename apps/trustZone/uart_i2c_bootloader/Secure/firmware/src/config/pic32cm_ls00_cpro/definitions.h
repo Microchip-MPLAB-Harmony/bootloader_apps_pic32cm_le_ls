@@ -52,13 +52,13 @@
 #include "peripheral/sercom/i2c_slave/plib_sercom2_i2c_slave.h"
 #include "peripheral/evsys/plib_evsys.h"
 #include "bootloader/bootloader_uart.h"
-#include "peripheral/pm/plib_pm.h"
 #include "peripheral/port/plib_port.h"
 #include "peripheral/clock/plib_clock.h"
 #include "peripheral/nvic/plib_nvic.h"
 #include "peripheral/systick/plib_systick.h"
 #include "peripheral/wdt/plib_wdt.h"
 #include "peripheral/sercom/usart/plib_sercom5_usart.h"
+#include "peripheral/pm/plib_pm.h"
 #include "bootloader/bootloader_i2c.h"
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
