@@ -8,8 +8,8 @@ creation_date: 2022-11-08T19:40:37.820+05:30[Asia/Calcutta]    # ISO 8601 format
 operating_system: Windows 10
 mhc_mode: Standalone            # [IDE|Standalone|Headless]
 mhc_version: v3.8.5
-mplabx_version: NA        # if MPLAB X plugin only
-plugin_version: NA        # if MPLAB X plugin only
+mplabx_version: 6.05.0        # if MPLAB X plugin only
+plugin_version: 5.2.1        # if MPLAB X plugin only
 compiler: xc32
 
 modules:

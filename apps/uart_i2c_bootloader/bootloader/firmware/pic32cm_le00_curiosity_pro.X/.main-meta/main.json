@@ -10,12 +10,12 @@
 		"shortDescription": "This example application shows how to use the UART-I2C Factory Programed Bootloader for PIC32CM LE/LS family",
 		"ide": {
 			"name": "MPLABX",
-			"semverRange": ">=5.50.0"
+			"semverRange": ">=6.05.0"
 		},
 		"compiler": [
 			{
 				"name": "XC32",
-				"semverRange": ">=3.00.0"
+				"semverRange": ">=4.20.0"
 			}
 		],
 		"dfp": {
@@ -23,8 +23,8 @@
 			"semverRange": "^1.1.162"
 		},
 		"configurator": {
-			"name": "MHC",
-			"semverRange": ">=3.8.0"
+			"name": "MCC",
+			"semverRange": ">=5.2.1"
 		},
 		"device": {
 			"metaDataVersion": "1.0.0",
