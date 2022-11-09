@@ -136,6 +136,33 @@ children:
         children:
         - {type: Value, value: NON_SECURE}
   - type: File
+    attributes: {id: SERCOM_SPIS_COMMON_HEADER}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: security}
+        children:
+        - {type: Value, value: NON_SECURE}
+  - type: File
+    attributes: {id: SERCOM_SPIS_HEADER}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: security}
+        children:
+        - {type: Value, value: NON_SECURE}
+  - type: File
+    attributes: {id: SERCOM_SPIS_SOURCE}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: security}
+        children:
+        - {type: Value, value: NON_SECURE}
+  - type: File
     attributes: {id: SERCOM_SYS_DEF}
     children:
     - type: Attributes
