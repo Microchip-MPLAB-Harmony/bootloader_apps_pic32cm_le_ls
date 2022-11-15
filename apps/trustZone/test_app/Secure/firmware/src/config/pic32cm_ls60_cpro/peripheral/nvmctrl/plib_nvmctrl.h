@@ -79,25 +79,18 @@
 #define NVMCTRL_BOCORROW_PAGESIZE          (64U)
 
 
-typedef enum
-{
     /* No error */
-    NVMCTRL_ERROR_NONE = 0x0,
+#define NVMCTRL_ERROR_NONE  0x0
+   /* NVMCTRL invalid commands and/or bad keywords error */
+#define NVMCTRL_ERROR_PROG  0x2
+   /* NVMCTRL lock error */
+#define NVMCTRL_ERROR_LOCK  0x4
+   /* NVMCTRL programming or erase error */
+#define NVMCTRL_ERROR_NVM   0x8
+   /* Key Error */
+#define NVMCTRL_ERROR_KEY   0x10
 
-    /* NVMCTRL invalid commands and/or bad keywords error */
-    NVMCTRL_ERROR_PROG = 0x2,
-
-    /* NVMCTRL lock error */
-    NVMCTRL_ERROR_LOCK = 0x4,
-
-    /* NVMCTRL programming or erase error */
-    NVMCTRL_ERROR_NVM = 0x8,
-
-
-    /* Key Error */
-    NVMCTRL_ERROR_KEY = 0x10
-
-} NVMCTRL_ERROR;
+typedef uint8_t NVMCTRL_ERROR;
 
 typedef enum
 {
@@ -107,17 +100,17 @@ typedef enum
 
 typedef enum
 {
-    NVMCTRL_SECURE_MEMORY_REGION_APPLICATION = NVMCTRL_SULCK_AS_Msk,
     NVMCTRL_SECURE_MEMORY_REGION_BOOTLOADER = NVMCTRL_SULCK_BS_Msk,
+    NVMCTRL_SECURE_MEMORY_REGION_APPLICATION = NVMCTRL_SULCK_AS_Msk,
     NVMCTRL_SECURE_MEMORY_REGION_DATA = NVMCTRL_SULCK_DS_Msk
 } NVMCTRL_SECURE_MEMORY_REGION;
 
 
 void NVMCTRL_Initialize(void);
 
-bool NVMCTRL_Read( uint32_t *data, uint32_t length, uint32_t address );
+bool NVMCTRL_Read( uint32_t *data, uint32_t length,const uint32_t address );
 
-bool NVMCTRL_PageWrite( uint32_t* data, uint32_t address );
+bool NVMCTRL_PageWrite( uint32_t* data,const uint32_t address );
 
 bool NVMCTRL_RowErase( uint32_t address );
 
@@ -132,7 +125,7 @@ void NVMCTRL_RegionUnlock (NVMCTRL_MEMORY_REGION region);
 void NVMCTRL_SecureRegionLock (NVMCTRL_SECURE_MEMORY_REGION region);
 
 void NVMCTRL_SecureRegionUnlock (NVMCTRL_SECURE_MEMORY_REGION region);
-
+    
 void NVMCTRL_DataScrambleKeySet(uint32_t dsckey);
 
 void NVMCTRL_DataScrambleEnable(bool enable);

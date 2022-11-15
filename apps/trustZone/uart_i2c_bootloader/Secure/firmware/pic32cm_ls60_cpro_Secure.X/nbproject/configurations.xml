@@ -213,6 +213,7 @@
           </logicalFolder>
           <itemPath>../src/config/pic32cm_ls60_cpro/initialization.c</itemPath>
           <itemPath>../src/config/pic32cm_ls60_cpro/startup_xc32.c</itemPath>
+          <itemPath>../src/config/pic32cm_ls60_cpro/libc_syscalls.c</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>../src/main.c</itemPath>
