@@ -146,8 +146,10 @@
               <itemPath>../src/config/pic32cm_ls60_cpro/peripheral/port/plib_port.c</itemPath>
             </logicalFolder>
           </logicalFolder>
+          <itemPath>../src/config/pic32cm_ls60_cpro/libc_syscalls.c</itemPath>
         </logicalFolder>
       </logicalFolder>
+      <itemPath>../src/config/pic32cm_ls60_cpro/pin_configurations.csv</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -172,6 +174,7 @@
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/pic32cm_ls60_cpro/harmony-manifest-success.yml</itemPath>
       <itemPath>../src/config/pic32cm_ls60_cpro/harmony-manifest-failure.yml</itemPath>
+      <itemPath>uart_i2c_bootloader_pic32cm_ls60_cpro_NonSecure.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -187,11 +190,11 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>Simulator</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>4.00</languageToolchainVersion>
+        <languageToolchainVersion>4.20</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="PIC32CM-LS_DFP" vendor="Microchip" version="1.0.141"/>
+        <pack name="PIC32CM-LS_DFP" vendor="Microchip" version="1.1.162"/>
         <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
       </packs>
       <ScriptingSettings>
@@ -262,6 +265,7 @@
       </AtmelIceTool>
       <C32>
         <property key="additional-warnings" value="true"/>
+        <property key="appendMe" value=""/>
         <property key="enable-app-io" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-symbols" value="true"/>
@@ -293,6 +297,7 @@
       </C32-CO>
       <C32-LD>
         <property key="additional-options-use-response-files" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="enable-check-sections" value="false"/>
         <property key="exclude-floating-point-library" value="false"/>
         <property key="exclude-standard-libraries" value="false"/>
@@ -326,6 +331,7 @@
       </C32-LD>
       <C32CPP>
         <property key="additional-warnings" value="false"/>
+        <property key="appendMe" value=""/>
         <property key="check-new" value="false"/>
         <property key="eh-specs" value="true"/>
         <property key="enable-app-io" value="false"/>

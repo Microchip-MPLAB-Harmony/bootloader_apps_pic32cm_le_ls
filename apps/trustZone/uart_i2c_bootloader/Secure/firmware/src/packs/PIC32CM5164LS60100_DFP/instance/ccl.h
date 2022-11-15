@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2022-03-31T12:21:46Z */
+/* file generated from device description version 2022-05-25T15:38:03Z */
 #ifndef _PIC32CMLS60_CCL_INSTANCE_
 #define _PIC32CMLS60_CCL_INSTANCE_
 

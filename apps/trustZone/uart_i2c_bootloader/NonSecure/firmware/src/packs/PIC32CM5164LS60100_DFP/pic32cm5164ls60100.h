@@ -20,7 +20,7 @@
  *
  */
 
-/* File generated from device description version 2022-03-31T12:21:46Z */
+/* File generated from device description version 2022-05-25T15:38:03Z */
 #ifndef _PIC32CM5164LS60100_H_
 #define _PIC32CM5164LS60100_H_
 
@@ -82,9 +82,9 @@ typedef enum IRQn
   SysTick_IRQn              =  -1, /* -1  System Tick Timer                   */
 
 /******  PIC32CM5164LS60100 specific Interrupt Numbers ***********************************/
+  MCLK_IRQn                 =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (MCLK) */
   PM_IRQn                   =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (PM) */
   OSCCTRL_IRQn              =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (OSCCTRL) */
-  MCLK_IRQn                 =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (MCLK) */
   SUPC_IRQn                 =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (SUPC) */
   OSC32KCTRL_IRQn           =   0, /* 0   Shared between MCLK OSCCTRL OSC32KCTRL PM SUPC (OSC32KCTRL) */
   WDT_IRQn                  =   1, /* 1   Watchdog Timer (WDT)                */

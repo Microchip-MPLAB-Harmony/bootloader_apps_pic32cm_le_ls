@@ -41,10 +41,9 @@ void __attribute__((noinline)) Reset_Handler(void);
 __attribute__ ((used, section(".vectors")))
 void (* const vectors[])(void) =
 {
-  &_ram_end_,
-  Reset_Handler,
+    &_ram_end_,
+    Reset_Handler,
 };
-
 
 /**
  * \brief This is the code that gets called on processor reset.

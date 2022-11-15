@@ -98,7 +98,7 @@ void WDT_EnableWindowMode( void )
     }
 	
     /* Window mode can be changed only if peripheral is disabled or ALWAYS ON bit is set */
-    if((!(WDT_REGS->WDT_CTRLA & WDT_CTRLA_ENABLE_Msk)) || (WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk))
+    if(((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ENABLE_Msk) == 0U) || ((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk) != 0U))
     {
         /* Enable window mode */
         WDT_REGS->WDT_CTRLA |= (uint8_t)WDT_CTRLA_WEN_Msk;
@@ -118,7 +118,7 @@ void WDT_DisableWindowMode( void )
     }
 	
     /* Window mode can be changed only if peripheral is disabled or ALWAYS ON bit is set */
-    if((!(WDT_REGS->WDT_CTRLA & WDT_CTRLA_ENABLE_Msk)) || (WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk))
+    if(((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ENABLE_Msk) == 0U) || ((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk) != 0U))
     {
         /* Disable window mode */
         WDT_REGS->WDT_CTRLA &= (uint8_t)(~WDT_CTRLA_WEN_Msk);
@@ -132,24 +132,24 @@ void WDT_DisableWindowMode( void )
 
 bool WDT_IsEnabled(void)
 {
-    return (WDT_REGS->WDT_CTRLA & (WDT_CTRLA_ALWAYSON_Msk | WDT_CTRLA_ENABLE_Msk))? true : false;
+    return ((WDT_REGS->WDT_CTRLA & (WDT_CTRLA_ALWAYSON_Msk | WDT_CTRLA_ENABLE_Msk)) != 0U);
 }
 
 bool WDT_IsAlwaysOn(void)
 {
-    return (WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk)? true : false;
+    return ((WDT_REGS->WDT_CTRLA & WDT_CTRLA_ALWAYSON_Msk) != 0U);
 }
 
 bool WDT_IsWindowModeEnabled(void)
 {
-    return (WDT_REGS->WDT_CTRLA & WDT_CTRLA_WEN_Msk)? true : false;
+    return ((WDT_REGS->WDT_CTRLA & WDT_CTRLA_WEN_Msk) != 0U);
 }
 
 
 void WDT_TimeoutPeriodSet(uint8_t TimeoutPeriod)
 {
     /* Set WDT timeout period */
-    WDT_REGS->WDT_CONFIG = (WDT_REGS->WDT_CONFIG & ~WDT_CONFIG_PER_Msk) | (TimeoutPeriod & WDT_CONFIG_PER_Msk);
+    WDT_REGS->WDT_CONFIG = (WDT_REGS->WDT_CONFIG & (uint8_t)~WDT_CONFIG_PER_Msk) | (TimeoutPeriod & (uint8_t)WDT_CONFIG_PER_Msk);
 }
 
 /* If application intends to stay in active mode after clearing WDT, then use WDT_Clear API to clear the WDT. This avoids CPU from waiting or stalling for Synchronization.

@@ -44,22 +44,22 @@
 
 void SYSTICK_TimerInitialize ( void )
 {
-    SysTick->CTRL = 0;
-    SysTick->VAL = 0;
-    SysTick->LOAD = 0x493e00 - 1;
+    SysTick->CTRL = 0U;
+    SysTick->VAL = 0U;
+    SysTick->LOAD = 0x493e00U - 1U;
    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk;
 }
 
 void SYSTICK_TimerRestart ( void )
 {
     SysTick->CTRL &= ~(SysTick_CTRL_ENABLE_Msk);
-    SysTick->VAL = 0;
+    SysTick->VAL = 0U;
     SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
 }
 
 void SYSTICK_TimerStart ( void )
 {
-    SysTick->VAL = 0;
+    SysTick->VAL = 0U;
     SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
 }
 
@@ -70,7 +70,7 @@ void SYSTICK_TimerStop ( void )
 
 void SYSTICK_TimerPeriodSet ( uint32_t period )
 {
-    SysTick->LOAD = period - 1;
+    SysTick->LOAD = period - 1U;
 }
 
 uint32_t SYSTICK_TimerPeriodGet ( void )
@@ -150,6 +150,6 @@ void SYSTICK_DelayUs ( uint32_t delay_us)
 
 bool SYSTICK_TimerPeriodHasExpired(void)
 {
-   return (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) > 0;
+   return (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) > 0U;
 }
 

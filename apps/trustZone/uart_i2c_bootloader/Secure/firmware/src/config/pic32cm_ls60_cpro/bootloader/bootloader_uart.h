@@ -1,8 +1,8 @@
 /*******************************************************************************
-  Bootloader Header File
+  UART Bootloader Header File
 
   File Name:
-    bootloader.h
+    bootloader_uart.h
 
   Summary:
     This file contains Interface definitions of bootloder
