@@ -3,6 +3,20 @@
 
 # Microchip MPLAB® Harmony 3 Release Notes
 
+## Bootloader Apps for PIC32CM LE/LS Release v3.1.0
+
+### Known Issues
+
+- None
+
+### Development Tools
+
+* [MPLAB® X IDE v6.05](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB® XC32 C/C++ Compiler v4.20](https://www.microchip.com/mplab/compilers)
+* MPLAB® X IDE plug-ins:
+  * MPLAB® Code Configurator (MCC) v5.2.1
+
+
 ## Bootloader Apps for PIC32CM LE/LS Release v3.0.0
 
 ### New Features

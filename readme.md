@@ -1,25 +1,24 @@
 ﻿---
-title: I2C Bootloader Applications
+title: UART-I2C Factory Programmed Bootloader Applications
 has_children: true
 has_toc: false
 nav_order: 1
 ---
 
 ![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
+![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
-# MPLAB® Harmony 3 I2C Bootloader Application Examples
+# MPLAB® Harmony 3 UART-I2C Factory Programmed Bootloader Application Examples
 
-MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating
-embedded firmware solutions for Microchip 32-bit SAM and PIC® microcontroller
-and microprocessor devices. Refer to the following links for more information.
+MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating embedded firmware solutions for Microchip 32-bit SAM and PIC® microcontroller and microprocessor devices.  Refer to the following links for more information.
 
 - [Microchip 32-bit MCUs](https://www.microchip.com/design-centers/32-bit)
 - [Microchip 32-bit MPUs](https://www.microchip.com/design-centers/32-bit-mpus)
 - [Microchip MPLAB X IDE](https://www.microchip.com/mplab/mplab-x-ide)
-- [Microchip MPLAB Harmony](https://www.microchip.com/mplab/mplab-harmony)
-- [Microchip MPLAB Harmony Pages](https://microchip-mplab-harmony.github.io/)
+- [Microchip MPLAB® Harmony](https://www.microchip.com/mplab/mplab-harmony)
+- [Microchip MPLAB® Harmony Pages](https://microchip-mplab-harmony.github.io/)
 
-This repository contains the MPLAB® Harmony 3 I2C Bootloader application examples
+This repository contains the MPLAB® Harmony 3 UART-I2C Factory Programmed Bootloader application examples
 
 - [Release Notes](release_notes.md)
 - [MPLAB® Harmony License](mplab_harmony_license.md)
@@ -30,8 +29,7 @@ To clone or download these application from Github,go to the [main page of this 
 
 | Folder     | Description                             |
 | ---        | ---                                     |
-| apps       | I2C Bootloader example applications    |
-| docs       | Applications help documentation         |
+| apps       | UART-I2C Factory Programmed Bootloader example applications    |
 
 
 ## Bootloader Examples

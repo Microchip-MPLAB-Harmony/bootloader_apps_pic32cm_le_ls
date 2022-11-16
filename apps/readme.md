@@ -1,6 +1,6 @@
 ---
-parent: I2C Bootloader Applications
-title: I2C Bootloader
+parent: UART-I2C Factory Programmed Bootloader Applications
+title: UART-I2C Factory Programmed Bootloader
 has_children: false
 has_toc: false
 nav_order: 1
